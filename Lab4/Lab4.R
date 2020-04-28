@@ -31,5 +31,6 @@ thirdResFetched
 fourthRes <- dbSendQuery(conn, "SELECT Name, count(*) as NumPapers FROM Authors JOIN PaperAuthors ON Authors.id = AuthorId GROUP BY Name Order By NumPapers DESC")
 fourthResFetched <- dbFetch(fourthRes, 10)
 dbClearResult(fourthRes)
+dbDisconnect(conn)
 fourthResFetched
 

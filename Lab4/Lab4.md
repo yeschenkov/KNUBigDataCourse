@@ -1,15 +1,10 @@
 Lab4.R
 ================
 v.yeshchenkov
-2020-04-27
+2020-04-28
 
 ``` r
 library("RSQLite")
-```
-
-    ## Warning: package 'RSQLite' was built under R version 3.6.3
-
-``` r
 conn <- dbConnect(SQLite(), "database.sqlite")
 
 ## 1. Назва статті (Title), тип виступу (EventType). Необхідно вибрати тільки статті
@@ -92,6 +87,7 @@ thirdResFetched
 fourthRes <- dbSendQuery(conn, "SELECT Name, count(*) as NumPapers FROM Authors JOIN PaperAuthors ON Authors.id = AuthorId GROUP BY Name Order By NumPapers DESC")
 fourthResFetched <- dbFetch(fourthRes, 10)
 dbClearResult(fourthRes)
+dbDisconnect(conn)
 fourthResFetched
 ```
 
